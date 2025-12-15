@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>10 Days to My Heart</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'hand': ['"Caveat"', 'cursive'],
+                        'chalk': ['"Reenie Beanie"', 'cursive'],
+                        'body': ['"Indie Flower"', 'cursive'],
+                        'serif': ['"Crimson Text"', 'serif'],
+                        'mono': ['"Courier New"', 'monospace'],
+                    },
+                    colors: {
+                        cream: '#f8f4e6',
+                        frost: '#e6f3ff',
+                        wood: {
+                            100: '#f0e6d2',
+                            200: '#e6d5b8',
+                            300: '#d9c8a7',
+                            400: '#c2a886',
+                            800: '#5c4d3c',
+                            900: '#3e3228',
+                        },
+                        hp: {
+                            parchment: '#f0e6d2',
+                            green: '#1a472a',
+                            wax: '#740001'
+                        }
+                    },
+                    animation: {
+                        'sway': 'sway 4s ease-in-out infinite',
+                        'jiggle': 'jiggle 0.3s ease-in-out',
+                        'snow': 'snow 10s linear infinite',
+                        'pulse-slow': 'pulse 3s infinite',
+                        'radar': 'radar 4s infinite linear',
+                        'scan': 'scan 3s ease-in-out infinite',
+                        'twinkle': 'twinkle 3s ease-in-out infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'mitosis': 'mitosis 4s infinite ease-in-out alternate',
+                        'bounce-key': 'bounceKey 1s infinite alternate',
+                        'fill-bar': 'fillBar 2s ease-out forwards',
+                        'unfold': 'unfold 1s ease-in-out forwards',
+                        'drift': 'drift 10s infinite linear',
+                        'focus': 'focus 5s infinite alternate',
+                    },
+                    keyframes: {
+                        sway: {
+                            '0%, 100%': { transform: 'rotate(-2deg)' },
+                            '50%': { transform: 'rotate(2deg)' },
+                        },
+                        jiggle: {
+                            '0%, 100%': { transform: 'rotate(0deg)' },
+                            '25%': { transform: 'rotate(-5deg)' },
+                            '75%': { transform: 'rotate(5deg)' },
+                        },
+                        snow: {
+                            '0%': { transform: 'translateY(-10px) translateX(0) rotate(0deg)', opacity: '0' },
+                            '20%': { opacity: '1' },
+                            '100%': { transform: 'translateY(100vh) translateX(20px) rotate(360deg)', opacity: '0.2' },
+                        },
+                        radar: {
+                            '0%': { transform: 'rotate(0deg)' },
+                            '100%': { transform: 'rotate(360deg)' },
+                        },
+                        scan: {
+                            '0%, 100%': { top: '0%', opacity: '0' },
+                            '10%': { opacity: '1' },
+                            '90%': { opacity: '1' },
+                            '100%': { top: '100%', opacity: '0' }
+                        },
+                        twinkle: {
+                            '0%, 100%': { opacity: '0.6', transform: 'scale(1)' },
+                            '50%': { opacity: '1', transform: 'scale(1.3)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        },
+                        mitosis: {
+                            '0%': { transform: 'scale(1)' },
+                            '100%': { transform: 'scale(1.1)' }
+                        },
+                        bounceKey: {
+                            '0%': { transform: 'translateY(0) rotate(45deg)' },
+                            '100%': { transform: 'translateY(-10px) rotate(45deg)' }
+                        },
+                        fillBar: {
+                            '0%': { width: '0%' },
+                            '100%': { width: '100%' }
+                        },
+                        unfold: {
+                            '0%': { transform: 'scaleY(0)', opacity: '0' },
+                            '100%': { transform: 'scaleY(1)', opacity: '1' }
+                        },
+                        drift: {
+                            '0%': { transform: 'translate(0, 0)' },
+                            '100%': { transform: 'translate(10px, -20px)' }
+                        },
+                        focus: {
+                            '0%': { filter: 'blur(0px)' },
+                            '50%': { filter: 'blur(1px)' },
+                            '100%': { filter: 'blur(0px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Indie+Flower&family=Montserrat:wght@400;600&family=Reenie+Beanie&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        /* --- GLOBAL THEME --- */
+        body {
+            transition: background 1s ease, color 1s ease;
+            background-color: #f8f4e6;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body:not(.dark) {
+            background: linear-gradient(180deg, #f8f4e6 0%, #e6f3ff 100%);
+            color: #5c4d3c;
+        }
+
+        body.dark {
+            background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+        }
+
+        /* --- LANDSCAPE --- */
+        .landscape-layer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        /* Realistic Tree Lights */
+        .tree-light {
+            fill: #fbbf24; /* Warm Yellow */
+            filter: drop-shadow(0 0 3px #f59e0b); /* Glow effect */
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        /* --- DOOR STYLES --- */
+        .door-card {
+            background: linear-gradient(145deg, #f0e6d2, #d9c8a7);
+            box-shadow: 
+                5px 5px 15px rgba(0,0,0,0.1),
+                -5px -5px 15px rgba(255,255,255,0.8),
+                inset 0 0 0 0 rgba(255,255,255,0.5);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform-style: preserve-3d;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body.dark .door-card {
+            background: linear-gradient(145deg, #2d3748, #1a202c);
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .door-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 
+                8px 15px 25px rgba(0,0,0,0.15),
+                inset 0 0 20px rgba(255,255,255,0.6); 
+        }
+
+        .door-number {
+            font-family: 'Reenie Beanie', cursive;
+            background: #3e3228;
+            color: #f8f4e6;
+            border-radius: 50% 40% 60% 50% / 60% 50% 60% 40%;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .ribbon {
+            position: absolute;
+            top: -10px; right: -10px;
+            width: 80px; height: 80px;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .ribbon::before {
+            content: '';
+            position: absolute;
+            top: 20px; right: -25px;
+            transform: rotate(45deg);
+            width: 100px; height: 20px;
+            background: #15803d;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            border: 1px dashed rgba(255,255,255,0.4);
+        }
+
+        /* --- MODAL --- */
+        .paper-modal {
+            background-color: #fdfbf7;
+            background-image: 
+                linear-gradient(#e5e7eb 1px, transparent 1px),
+                linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
+            background-size: 20px 20px;
+            box-shadow: 0 0 0 8px rgba(255,255,255,0.5), 0 20px 50px rgba(0,0,0,0.3);
+            mask-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='rough'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='5'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23rough)' fill='black'/%3E%3C/svg%3E");
+        }
+
+        /* --- SNOW --- */
+        .snowflake {
+            position: fixed;
+            top: -20px;
+            color: white;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1;
+            text-shadow: 0 0 5px rgba(255,255,255,0.8);
+        }
+
+        /* --- TYPOGRAPHY --- */
+        .cursor::after {
+            content: '▋';
+            animation: blink 1s step-end infinite;
+            color: #16a34a;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .text-shadow-glow { text-shadow: 0 0 15px rgba(251, 191, 36, 0.6); }
+        
+        /* Finale Letter */
+        .letter-paper {
+            background-color: #fcfaf2;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid #e5e7eb;
+            position: relative;
+            transform-origin: top center;
+        }
+        .letter-paper::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #fecaca;
+        }
+        
+        /* Envelope styling */
+        .envelope-container {
+             perspective: 1000px;
+        }
+        .envelope-body {
+            position: relative;
+            background: #f0e6d2;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .envelope-flap-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: #e6d5b8;
+            clip-path: polygon(0 0, 50% 100%, 100% 0);
+            z-index: 20;
+            transform-origin: top;
+            transition: transform 0.4s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .envelope-flap-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 55%;
+            background: #d9c8a7;
+            clip-path: polygon(0 100%, 50% 0, 100% 100%);
+            z-index: 10;
+        }
+        .envelope-flap-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: #e0d0b0;
+            clip-path: polygon(0 0, 100% 50%, 0 100%);
+            z-index: 10;
+        }
+        .envelope-flap-right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: #e0d0b0;
+            clip-path: polygon(100% 0, 0 50%, 100% 100%);
+            z-index: 10;
+        }
+
+        /* Biology Cell */
+        .cell-wall {
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1), rgba(0,0,0,0.1));
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.2), 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        /* Custom Scrollbar for Modal content */
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Ambient Audio (Triggered manually) -->
+    <audio id="open-sound" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3"></audio>
+
+    <!-- Snow -->
+    <div id="snow-container"></div>
+    
+    <!-- Landscape -->
+    <div class="landscape-layer text-wood-800 dark:text-night-sky opacity-20 dark:opacity-60 flex justify-between items-end px-4 transform translate-y-1/3">
+        <!-- Tree 1 -->
+        <svg class="w-48 h-64 animate-sway origin-bottom" viewBox="0 0 100 200" fill="currentColor">
+            <path d="M50 0 L90 150 H10 L50 0 Z" />
+            <path d="M50 30 L80 150 H20 L50 30 Z" />
+            <!-- Lights: Warm Yellow Glow -->
+            <circle cx="50" cy="40" r="2.5" class="tree-light" style="animation-delay: 0s" />
+            <circle cx="65" cy="80" r="2.5" class="tree-light" style="animation-delay: 0.5s" />
+            <circle cx="35" cy="100" r="2.5" class="tree-light" style="animation-delay: 1s" />
+            <circle cx="55" cy="120" r="2.5" class="tree-light" style="animation-delay: 1.5s" />
+            <circle cx="25" cy="140" r="2.5" class="tree-light" style="animation-delay: 0.2s" />
+            <circle cx="75" cy="140" r="2.5" class="tree-light" style="animation-delay: 0.8s" />
+        </svg>
+        
+        <!-- Tree 2 -->
+        <svg class="w-24 h-36 animate-sway origin-bottom" style="animation-delay: 1s;" viewBox="0 0 100 200" fill="currentColor">
+            <path d="M50 0 L90 150 H10 L50 0 Z" />
+            <circle cx="50" cy="40" r="2" class="tree-light" style="animation-delay: 0.3s" />
+            <circle cx="40" cy="100" r="2" class="tree-light" style="animation-delay: 1.2s" />
+            <circle cx="60" cy="130" r="2" class="tree-light" style="animation-delay: 0.7s" />
+        </svg>
+        
+        <!-- Tree 3 -->
+        <svg class="w-40 h-56 animate-sway origin-bottom" style="animation-delay: 0.5s;" viewBox="0 0 100 200" fill="currentColor">
+            <path d="M50 0 L90 150 H10 L50 0 Z" />
+            <circle cx="50" cy="50" r="2.5" class="tree-light" style="animation-delay: 0.4s" />
+            <circle cx="70" cy="110" r="2.5" class="tree-light" style="animation-delay: 1.1s" />
+            <circle cx="30" cy="110" r="2.5" class="tree-light" style="animation-delay: 0.2s" />
+            <circle cx="50" cy="130" r="2.5" class="tree-light" style="animation-delay: 0.9s" />
+        </svg>
+    </div>
+
+    <!-- Main Content -->
+    <div class="relative z-10 min-h-screen flex flex-col items-center pb-20">
+        
+        <!-- Hero -->
+        <header class="pt-16 pb-8 text-center w-full max-w-2xl px-6 relative">
+            <h1 class="font-hand text-5xl md:text-7xl font-bold mb-4 tracking-tight leading-none text-wood-900 dark:text-cream relative inline-block lowercase flex items-center justify-center">
+                <span class="relative z-10 mr-4">10</span>
+                <div class="relative inline-block mr-4">
+                    <span>steps</span>
+                    <!-- Bouncing Key Icon (Kept icon, changed text) -->
+                    <div class="absolute -top-7 left-1/2 transform -translate-x-1/2 animate-bounce-key pointer-events-none">
+                         <svg width="40" height="40" viewBox="0 0 24 24" fill="#f59e0b" stroke="#78350f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="7" r="5" fill="none"/>
+                            <path d="M12 12V21" />
+                            <path d="M9 16H12" />
+                            <path d="M9 19H12" />
+                        </svg>
+                    </div>
+                </div>
+                <span class="relative z-10">to you</span>
+                
+                <div class="absolute -top-1 left-0 w-full h-4 bg-white rounded-full opacity-80 blur-[2px] dark:opacity-20 pointer-events-none"></div>
+            </h1>
+            <p class="font-body text-xl text-wood-800 dark:text-gray-300 mb-8 rotate-1 lowercase">
+                counting down the moments until i can hold you
+            </p>
+            
+            <!-- Clock -->
+            <div class="bg-wood-800 dark:bg-slate-800 text-cream p-4 rounded-xl shadow-xl inline-flex flex-col items-center border-4 border-wood-400 dark:border-slate-600 transform -rotate-1 mx-auto max-w-[300px]">
+                <span class="font-chalk text-2xl mb-1 text-wood-200 lowercase">next step in</span>
+                <div id="countdown" class="font-hand text-4xl md:text-5xl font-bold tracking-widest text-shadow-glow text-amber-300">
+                    00:00:00
+                </div>
+            </div>
+        </header>
+
+        <!-- Grid -->
+        <main class="w-full max-w-5xl px-4 md:px-8 mb-12">
+            <div id="grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-fr">
+                <!-- Doors generated by JS -->
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center font-body text-wood-800 dark:text-slate-500 text-sm mt-auto lowercase">
+            <p class="mb-2">always yours</p>
+            <div class="flex justify-center gap-2">
+                 <button onclick="resetCalendar()" class="text-xs underline opacity-50 hover:opacity-100">reset</button>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Content Modal -->
+    <div id="modal-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4" onclick="closeModal()">
+        <div id="modal-card" class="paper-modal w-full max-w-lg h-auto max-h-[85vh] flex flex-col rounded-lg relative transform translate-y-10 transition-transform duration-500 p-8 md:p-12 text-wood-900" onclick="event.stopPropagation()">
+            <button onclick="closeModal()" class="absolute top-3 right-3 text-wood-400 hover:text-wood-900 font-hand text-3xl z-50 p-2">✕</button>
+            <div id="modal-content" class="font-body text-lg leading-relaxed w-full h-full relative overflow-y-auto custom-scroll">
+                <!-- Dynamic Content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden YouTube Player for Finale (Fixed: Not hidden, just invisible so audio plays) -->
+    <div id="player-container" class="fixed bottom-0 right-0 opacity-0 pointer-events-none w-1 h-1 overflow-hidden z-0"></div>
+
+    <!-- Toast -->
+    <div id="toast" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none transition-all duration-300 opacity-0 transform scale-90">
+        <div class="bg-white/90 dark:bg-slate-800/90 backdrop-blur px-8 py-4 rounded-full shadow-2xl border-2 border-rose-200">
+            <p class="font-hand text-2xl text-rose-500 font-bold text-center lowercase">not yet, love.<br><span class="text-base text-gray-500 font-sans font-normal">patience...</span></p>
+        </div>
+    </div>
+
+    <script>
+        // --- CONFIG ---
+        // Dynamically set start date to today's date at midnight to ensure Day 1 is open
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        
+        const CONFIG = {
+            startDate: today,
+            totalDays: 10,
+            isDev: false
+        };
+
+        let openedDoors = [];
+        try {
+            openedDoors = JSON.parse(localStorage.getItem('openedDoors') || '[]');
+        } catch(e) {
+            console.warn('LocalStorage access denied', e);
+        }
+        
+        let player = null;
+
+        // --- TYPEWRITER ---
+        function typeWriter(text, elementId, speed = 30) {
+            let i = 0;
+            const el = document.getElementById(elementId);
+            if(!el) return;
+            el.innerHTML = '<span class="cursor"></span>';
+            
+            function type() {
+                if (i < text.length) {
+                    if (text.substring(i, i+4) === "<br>") {
+                        el.innerHTML = text.substring(0, i) + "<br><span class='cursor'></span>";
+                        i += 4;
+                    } else {
+                        el.innerHTML = text.substring(0, i+1) + "<span class='cursor'></span>";
+                        i++;
+                    }
+                    setTimeout(type, speed + (Math.random() * 20)); 
+                }
+            }
+            type();
+        }
+
+        // --- CONTENT DATA ---
+        const DAYS = [
+            {
+                id: 1,
+                title: "terminal",
+                content: `
+                    <div class="bg-gray-900 p-6 rounded border border-gray-700 shadow-2xl h-96 overflow-y-auto font-mono text-xs md:text-sm leading-relaxed text-green-400">
+                        <div class="mb-2 border-b border-gray-700 pb-2 flex justify-between opacity-50">
+                            <span>TERMINAL_V.2.5</span>
+                            <span>SECURE_CONNECTION</span>
+                        </div>
+                        <div>
+                            <span class="text-blue-400 font-bold">root@heart:~#</span> ./initiate_protocol.sh --target=aaradhya<br>
+                            <div id="terminal-output" class="mt-2 text-gray-300"></div>
+                        </div>
+                    </div>
+                `,
+                onOpen: () => {
+                    const text = "booting protocol v2.5...<br>initializing emotional substrate... [OK]<br>establishing secure connection to my favorite person...<br>pinging heart server...<br>response time: 0ms (you are always on my mind).<br><br>scanning local feelings...<br>found: excessive longing.<br>found: uncontainable excitement.<br>analyzing heart rate... result: significantly elevated.<br>detecting anomaly in chest region...<br>diagnosis: severe case of missing you.<br><br>running diagnostic on 'us'...<br>compatibility: 100%<br>chemistry: explosive<br>future_projections: infinite<br><br>initiating memory playback...<br>loading laughter.wav... done.<br>loading inside_jokes.db... done.<br>loading comfort.exe... done.<br><br>attempting to simulate physical touch...<br>error: distance too great.<br>workaround: sending virtual warmth...<br>packet delivered successfully.<br><br>conclusion: i miss you more than code can explain.<br>status: waiting for you to come home.<br>system operational.<br>end of log.";
+                    typeWriter(text, 'terminal-output', 20);
+                }
+            },
+            {
+                id: 2,
+                title: "playlist",
+                content: `
+                    <div class="text-center h-full flex flex-col justify-center">
+                        <h3 class="font-hand text-3xl mb-4 lowercase">stamped and sealed</h3>
+                        <div class="bg-gray-900 rounded-xl p-4 shadow-inner transform rotate-1">
+                             <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/7pdmBld4yW3WIUkrxHyb5r?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        </div>
+                        <p class="mt-4 text-xl text-wood-800 font-bold lowercase">northern sky</p>
+                        <p class="text-sm text-gray-500 italic lowercase">nick drake</p>
+                    </div>
+                `
+            },
+            {
+                id: 3,
+                title: "anatomy",
+                content: `
+                    <div class="bg-black text-green-500 p-6 rounded-lg font-mono text-xs shadow-2xl relative overflow-hidden h-full min-h-[400px] border border-green-900 flex flex-col lowercase">
+                        <div id="bio-scan-line" class="absolute top-0 left-0 w-full h-1 bg-green-500/50 shadow-[0_0_15px_#22c55e] animate-scan z-10 pointer-events-none"></div>
+                        
+                        <div class="flex justify-between border-b border-green-800 pb-2 mb-4 opacity-80">
+                            <span>subject_id: 001 // aaradhya</span>
+                            <span id="bio-status" class="animate-pulse">status: scanning...</span>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="border border-green-800 p-2 bg-green-900/10">
+                                <h4 class="opacity-60 mb-1">symptom_check</h4>
+                                <ul class="space-y-1">
+                                    <li class="flex justify-between"><span>heart_flutter</span> <span>[high]</span></li>
+                                    <li class="flex justify-between"><span>smile_freq</span> <span>[crit]</span></li>
+                                </ul>
+                            </div>
+                            <div class="border border-green-800 p-2 bg-green-900/10">
+                                <h4 class="opacity-60 mb-1">distance_calc</h4>
+                                <div class="text-lg animate-pulse">too_far_km</div>
+                            </div>
+                        </div>
+
+                        <div class="flex-1 space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span>love_levels</span>
+                                    <span id="affection-text">0%</span>
+                                </div>
+                                <div class="w-full bg-green-900 h-2">
+                                    <div id="bio-progress" class="bg-green-500 h-full w-0 shadow-[0_0_10px_#22c55e] transition-all duration-[3000ms] ease-out"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="border border-green-800 p-2 h-20 overflow-hidden relative">
+                                <div class="absolute inset-0 opacity-20" style="background: repeating-linear-gradient(0deg, transparent, transparent 19px, #22c55e 20px);"></div>
+                                <div class="absolute bottom-0 left-0 w-full flex items-end gap-1 h-full px-1 pb-1">
+                                    <div class="w-1 bg-green-500 h-[30%] animate-pulse"></div>
+                                    <div class="w-1 bg-green-500 h-[50%] animate-pulse" style="animation-delay: 0.1s"></div>
+                                    <div class="w-1 bg-green-500 h-[80%] animate-pulse" style="animation-delay: 0.2s"></div>
+                                    <div class="w-1 bg-green-500 h-[40%] animate-pulse" style="animation-delay: 0.3s"></div>
+                                    <div class="w-1 bg-green-500 h-[90%] animate-pulse" style="animation-delay: 0.4s"></div>
+                                    <div class="w-1 bg-green-500 h-[60%] animate-pulse" style="animation-delay: 0.5s"></div>
+                                </div>
+                                <span class="absolute top-1 right-1 text-[8px] opacity-50">wave_analysis</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 border-t border-green-800 pt-2 text-[10px] opacity-60 font-mono space-y-0.5">
+                            <p>> detecting_beautiful_soul...</p>
+                            <p>> match_confirmed.</p>
+                            <p>> conclusion: perfect_match.</p>
+                        </div>
+                    </div>
+                `,
+                onOpen: () => {
+                    setTimeout(() => {
+                        const bar = document.getElementById('bio-progress');
+                        const text = document.getElementById('affection-text');
+                        const status = document.getElementById('bio-status');
+                        const scanLine = document.getElementById('bio-scan-line');
+                        
+                        if(bar) bar.style.width = '100%';
+                        if(text) {
+                            let val = 0;
+                            const int = setInterval(() => {
+                                val += 2;
+                                if(val >= 100) { 
+                                    val = 100; 
+                                    clearInterval(int);
+                                    // Stop scanning animation
+                                    if(status) {
+                                        status.innerText = "analysis: complete";
+                                        status.classList.remove("animate-pulse");
+                                    }
+                                    if(scanLine) {
+                                        scanLine.style.animation = "none";
+                                        scanLine.style.opacity = "0";
+                                    }
+                                }
+                                text.innerText = val + '%';
+                            }, 50);
+                        }
+                    }, 500);
+                }
+            },
+            {
+                id: 4,
+                title: "bucket list",
+                content: `
+                    <div class="h-full flex flex-col font-hand lowercase text-xl text-wood-900">
+                        <h3 class="text-3xl font-bold mb-6 text-center underline decoration-rose-300 decoration-2">our bucket list</h3>
+                        
+                        <div class="space-y-4 flex-1 overflow-y-auto px-2">
+                             <div class="flex items-center gap-3">
+                                 <input type="checkbox" checked disabled class="w-5 h-5 accent-rose-400">
+                                 <span class="line-through opacity-50">falling in love</span>
+                             </div>
+                             <div class="flex items-center gap-3">
+                                 <input type="checkbox" disabled class="w-5 h-5 accent-rose-400">
+                                 <span>late night drive with no destination</span>
+                             </div>
+                             <div class="flex items-center gap-3">
+                                 <input type="checkbox" disabled class="w-5 h-5 accent-rose-400">
+                                 <span>cooking pasta together (and making a mess)</span>
+                             </div>
+                             <div class="flex items-center gap-3">
+                                 <input type="checkbox" disabled class="w-5 h-5 accent-rose-400">
+                                 <span>stargazing on a quiet roof</span>
+                             </div>
+                             <div class="flex items-center gap-3">
+                                 <input type="checkbox" disabled class="w-5 h-5 accent-rose-400">
+                                 <span>our first real concert date</span>
+                             </div>
+                             <div class="flex items-center gap-3">
+                                 <input type="checkbox" disabled class="w-5 h-5 accent-rose-400">
+                                 <span>grocery shopping like a boring old couple</span>
+                             </div>
+                             <div class="flex items-center gap-3">
+                                 <input type="checkbox" disabled class="w-5 h-5 accent-rose-400">
+                                 <span>infinite forehead kisses</span>
+                             </div>
+                        </div>
+                        
+                        <div class="mt-6 text-center text-sm font-sans text-gray-500 italic">
+                             "i can't wait to check these off with you."
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 5,
+                title: "book",
+                content: `
+                    <div class="bg-orange-50 p-6 rounded shadow-md border border-orange-100 relative overflow-hidden font-mono text-xs text-gray-800 lowercase h-full flex flex-col justify-between">
+                         <div>
+                             <div class="border-b-2 border-gray-800 pb-2 mb-4 flex justify-between items-end">
+                                <div>
+                                    <h3 class="font-bold text-sm">library of congress</h3>
+                                    <p>checkout record</p>
+                                </div>
+                                <span class="border border-gray-800 px-2 py-0.5">no. 8421</span>
+                             </div>
+                             <table class="w-full text-left mb-6 border-collapse">
+                                <thead>
+                                    <tr class="border-b border-gray-400 text-gray-500">
+                                        <th class="pb-1 font-normal w-1/3">date</th>
+                                        <th class="pb-1 font-normal w-2/3">issued to</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-blue-900 font-hand text-lg">
+                                    <tr class="border-b border-gray-200">
+                                        <td class="py-2">dec 19</td>
+                                        <td class="py-2 font-bold text-xl">aaradhya</td>
+                                    </tr>
+                                    <tr class="border-b border-gray-200">
+                                        <td class="py-2"></td>
+                                        <td class="py-2 text-xs font-mono text-gray-500 align-top pt-0">classification: the girl i love</td>
+                                    </tr>
+                                     <tr class="border-b border-gray-200">
+                                        <td class="py-2">forever</td>
+                                        <td class="py-2">do not return</td>
+                                    </tr>
+                                </tbody>
+                             </table>
+                         </div>
+                         <div class="mt-4 relative">
+                             <p class="text-base leading-relaxed text-gray-900 font-serif italic text-center px-4">
+                                "i choose you. and that's the plot twist i didn't see coming."
+                             </p>
+                         </div>
+                    </div>
+                `
+            },
+            {
+                id: 6,
+                title: "map",
+                content: `
+                    <div class="h-full flex flex-col lowercase font-mono text-xs min-h-[300px]">
+                        <div class="bg-gray-900 p-4 rounded-xl border border-gray-800 shadow-2xl flex-1 flex flex-col relative overflow-hidden">
+                            <div class="absolute inset-0 opacity-20" 
+                                 style="background-image: radial-gradient(circle, #22c55e 1px, transparent 1px); background-size: 20px 20px;">
+                            </div>
+                            <div class="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0_300deg,rgba(34,197,94,0.1)_360deg)] animate-radar rounded-full scale-150"></div>
+                            
+                            <div class="relative z-10 flex justify-between text-green-500 mb-4">
+                                <span>sys: online</span>
+                                <span class="animate-pulse">tracking connection...</span>
+                            </div>
+
+                            <div class="flex-1 flex flex-col items-center justify-center relative">
+                                <!-- Map Points -->
+                                <div class="w-full flex justify-between px-8 items-center mb-2">
+                                    <div class="flex flex-col items-center gap-1">
+                                        <div class="w-3 h-3 bg-green-500 rounded-full shadow-[0_0_10px_#22c55e]"></div>
+                                        <span class="text-green-500 text-[10px]">me</span>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-1">
+                                        <div class="w-3 h-3 border-2 border-green-500 rounded-full animate-ping"></div>
+                                        <span class="text-green-500 text-[10px]">you</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Progress Line -->
+                                <div class="w-3/4 h-[2px] bg-green-900 relative rounded-full overflow-hidden">
+                                     <div id="map-progress" class="absolute left-0 top-0 h-full bg-white shadow-[0_0_10px_white] w-0 transition-all duration-[4000ms] ease-linear"></div>
+                                </div>
+                                <div class="mt-2 text-[10px] text-green-400">distance closing...</div>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                onOpen: () => {
+                    setTimeout(() => {
+                        const bar = document.getElementById('map-progress');
+                        if(bar) bar.style.width = '100%';
+                    }, 500);
+                }
+            },
+            {
+                id: 7,
+                title: "hogwarts",
+                content: `
+                    <div class="bg-[#f0e6d2] p-6 md:p-8 rounded-lg shadow-2xl relative border-8 border-double border-[#740001] font-serif text-[#1a472a] h-full flex flex-col">
+                        <!-- Crest -->
+                        <div class="text-center mb-6 shrink-0">
+                            <div class="w-16 h-16 mx-auto mb-2 opacity-80 bg-[url('https://upload.wikimedia.org/wikipedia/commons/6/6e/Harry_Potter_wordmark.svg')] bg-contain bg-no-repeat bg-center"></div>
+                            <h2 class="font-bold text-xl tracking-widest uppercase border-b border-[#1a472a] pb-2 inline-block">hogwarts school</h2>
+                        </div>
+                        
+                        <div class="text-base leading-relaxed space-y-4 flex-1 overflow-y-auto">
+                            <p>dear ms. aaradhya,</p>
+                            <p>we are pleased to inform you that you have been accepted at the school of witchcraft and wizardry.</p>
+                            <p>but more importantly, you have cast a permanent charm on a specific muggle's heart.</p>
+                            <p class="italic font-bold">spell used: amor aeternus.</p>
+                        </div>
+                        
+                        <div class="mt-8 flex justify-end shrink-0">
+                            <div class="text-center">
+                                <div class="font-hand text-2xl transform -rotate-12 mb-1">Dumbledore</div>
+                                <div class="text-[10px] uppercase tracking-wider">headmaster</div>
+                            </div>
+                        </div>
+
+                        <!-- Wax Seal -->
+                        <div class="absolute bottom-4 left-6 w-12 h-12 rounded-full bg-[#740001] shadow-inner flex items-center justify-center text-[#f0e6d2] font-serif text-2xl font-bold opacity-90" style="box-shadow: inset 2px 2px 5px rgba(255,255,255,0.3), 3px 3px 5px rgba(0,0,0,0.4);">
+                            H
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 8,
+                title: "biology",
+                content: `
+                    <div class="bg-black text-white p-6 rounded-xl shadow-2xl h-full min-h-[400px] flex flex-col relative overflow-hidden border border-gray-800">
+                        <!-- Microscope HUD Overlay (Pointer events none for whole overlay) -->
+                        <div class="absolute inset-0 z-20 pointer-events-none">
+                            <div class="absolute top-4 left-4 text-[10px] font-mono text-green-400 opacity-70">
+                                MAGNIFICATION: 400x<br>
+                                FILTER: EMOTIONAL_RESONANCE
+                            </div>
+                            <div class="absolute top-4 right-4 text-[10px] font-mono text-green-400 opacity-70 text-right">
+                                TEMP: 37°C<br>
+                                SAMPLE: #001
+                            </div>
+                            
+                            <!-- Crosshair -->
+                            <div class="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-green-500/20 rounded-full"></div>
+                            <div class="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-green-500/40">+</div>
+                            
+                            <!-- Scale markings -->
+                            <div class="absolute bottom-20 left-1/2 -translate-x-1/2 flex gap-1">
+                                <div class="w-[1px] h-2 bg-green-500/50"></div>
+                                <div class="w-[1px] h-1 bg-green-500/30"></div>
+                                <div class="w-[1px] h-1 bg-green-500/30"></div>
+                                <div class="w-[1px] h-1 bg-green-500/30"></div>
+                                <div class="w-[1px] h-1 bg-green-500/30"></div>
+                                <div class="w-[1px] h-2 bg-green-500/50"></div>
+                                <div class="w-[1px] h-1 bg-green-500/30"></div>
+                                <div class="w-[1px] h-1 bg-green-500/30"></div>
+                                <div class="w-[1px] h-1 bg-green-500/30"></div>
+                                <div class="w-[1px] h-1 bg-green-500/30"></div>
+                                <div class="w-[1px] h-2 bg-green-500/50"></div>
+                            </div>
+                        </div>
+
+                        <!-- Vignette & Scan Lines -->
+                        <div class="absolute inset-0 bg-[radial-gradient(circle,transparent_40%,black_100%)] z-10 pointer-events-none"></div>
+                        <div class="absolute inset-0 z-10 opacity-10 pointer-events-none" style="background: repeating-linear-gradient(0deg, transparent, transparent 1px, #22c55e 2px);"></div>
+
+                        <!-- Particles -->
+                        <div class="absolute inset-0 w-full h-full z-0 animate-drift opacity-30">
+                             <div class="absolute top-1/4 left-1/4 w-1 h-1 bg-white rounded-full"></div>
+                             <div class="absolute top-3/4 left-1/3 w-0.5 h-0.5 bg-white rounded-full"></div>
+                             <div class="absolute top-1/2 left-3/4 w-1 h-1 bg-white rounded-full"></div>
+                        </div>
+
+                        <!-- Cells with Focus Animation (Shifted UP with pb-20 to clear bottom text) -->
+                        <div class="relative z-0 flex-1 flex items-center justify-center gap-4 animate-focus pb-20">
+                             <!-- Cell 1 -->
+                             <div class="w-24 h-24 rounded-full bg-gradient-to-br from-pink-400/40 to-pink-600/40 backdrop-blur-sm animate-mitosis cell-wall flex items-center justify-center text-[10px] text-pink-200 border border-pink-500/30 shadow-[0_0_20px_rgba(244,114,182,0.3)]">
+                                <div class="w-8 h-8 rounded-full bg-pink-300/50 blur-sm"></div>
+                             </div>
+                             <!-- Connecting Strand -->
+                             <div class="absolute w-12 h-2 bg-gradient-to-r from-pink-400/20 to-blue-400/20 blur-sm"></div>
+                             
+                             <!-- Cell 2 -->
+                             <div class="w-24 h-24 rounded-full bg-gradient-to-br from-blue-400/40 to-blue-600/40 backdrop-blur-sm animate-mitosis cell-wall flex items-center justify-center text-[10px] text-blue-200 border border-blue-500/30 shadow-[0_0_20px_rgba(96,165,250,0.3)]" style="animation-delay: 1s">
+                                <div class="w-8 h-8 rounded-full bg-blue-300/50 blur-sm"></div>
+                             </div>
+                        </div>
+                        
+                        <!-- Text Docked at Bottom -->
+                        <div class="absolute bottom-0 w-full z-20 bg-gray-900/90 border-t border-gray-800 backdrop-blur p-4 text-center">
+                            <h3 class="font-mono text-xs text-green-400 mb-1">sample analysis</h3>
+                            <p class="font-hand text-lg text-white">you are the mitochondria to my cell</p>
+                            <p class="text-[10px] text-gray-400">(the powerhouse of my world)</p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 9,
+                title: "constellation: us",
+                content: `
+                    <div class="bg-[#0f172a] text-white p-6 rounded-xl shadow-2xl h-full min-h-[400px] relative overflow-hidden flex flex-col justify-between">
+                        <!-- Stars -->
+                        <div class="absolute inset-0 w-full h-full flex items-center justify-center">
+                             <svg viewBox="0 0 300 300" class="w-full h-full max-w-[80%]" preserveAspectRatio="xMidYMid meet">
+                                <defs>
+                                    <path id="heart-path" d="M 150 240 
+                                         C 150 240, 50 150, 50 90 
+                                         C 50 50, 90 30, 120 30 
+                                         C 140 30, 150 50, 150 50 
+                                         C 150 50, 160 30, 180 30 
+                                         C 210 30, 250 50, 250 90 
+                                         C 250 150, 150 240, 150 240 Z" />
+                                </defs>
+                                
+                                <!-- Trace Path (Visible faint line) -->
+                                <use href="#heart-path" fill="none" stroke="white" stroke-width="0.5" stroke-dasharray="2 4" class="opacity-20" />
+
+                                <!-- Shooting Star Animation -->
+                                <circle r="2" fill="white" filter="drop-shadow(0 0 4px #fff)">
+                                    <animateMotion dur="6s" repeatCount="indefinite" rotate="auto">
+                                        <mpath href="#heart-path"/>
+                                    </animateMotion>
+                                </circle>
+                                <circle r="1" fill="#fcd34d" filter="drop-shadow(0 0 2px #fcd34d)" opacity="0.7">
+                                    <animateMotion dur="6s" begin="0.5s" repeatCount="indefinite" rotate="auto">
+                                        <mpath href="#heart-path"/>
+                                    </animateMotion>
+                                </circle>
+                                
+                                <!-- Static Stars on Path Vertices (Aligned to path) -->
+                                <circle cx="150" cy="240" r="3" fill="#facc15" class="animate-twinkle" /> <!-- Bottom Tip -->
+                                <circle cx="50" cy="90" r="2" fill="white" class="animate-twinkle" style="animation-delay:0.2s"/> <!-- Left Extreme -->
+                                <circle cx="120" cy="30" r="2" fill="white" class="animate-twinkle" style="animation-delay:0.4s"/> <!-- Left Top -->
+                                <circle cx="180" cy="30" r="2" fill="white" class="animate-twinkle" style="animation-delay:0.6s"/> <!-- Right Top -->
+                                <circle cx="250" cy="90" r="2" fill="white" class="animate-twinkle" style="animation-delay:0.8s"/> <!-- Right Extreme -->
+                                <circle cx="150" cy="50" r="2" fill="white" class="animate-twinkle" style="animation-delay:1s"/> <!-- Center Dip -->
+                             </svg>
+                        </div>
+                        
+                        <div class="relative z-10 text-center w-full mt-auto mb-4 bg-gradient-to-t from-[#0f172a] to-transparent pt-10">
+                             <p class="font-hand text-lg mt-2 opacity-90 px-4 lowercase">constellation of stars, murals on city walls i don’t see nobody but you &lt;3</p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 10,
+                title: "finale",
+                content: `
+                    <!-- Interactive Trigger for Audio -->
+                    <div id="finale-start" class="flex flex-col items-center justify-center h-full w-full cursor-pointer group" onclick="playFinale()">
+                        <div class="w-64 h-40 relative flex items-center justify-center transform group-hover:scale-105 transition duration-500 envelope-container">
+                             <!-- Envelope Body -->
+                             <div class="envelope-body absolute inset-0 rounded-b-lg overflow-hidden">
+                                 <div class="envelope-flap-left"></div>
+                                 <div class="envelope-flap-right"></div>
+                                 <div class="envelope-flap-bottom"></div>
+                             </div>
+                             
+                             <!-- Envelope Flap Top (Lid) -->
+                             <div class="envelope-flap-top"></div>
+                             
+                             <!-- Heart Seal -->
+                             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-red-800 rounded-full flex items-center justify-center shadow-lg z-30 ring-2 ring-red-900/50">
+                                <span class="text-white text-lg font-serif">N</span>
+                             </div>
+                        </div>
+                        <p class="mt-8 font-mono text-xs text-gray-500 animate-pulse">tap to break seal</p>
+                    </div>
+
+                    <!-- Actual Content (Hidden initially) -->
+                    <div id="finale-content" class="hidden h-full flex flex-col">
+                        <div class="letter-paper w-full h-full overflow-y-auto custom-scroll p-8 md:p-12 animate-unfold origin-top">
+                            <div class="flex justify-between items-center mb-8 border-b border-gray-200 pb-4">
+                                <div class="font-serif italic text-gray-400">from the desk of niv</div>
+                                <div class="font-mono text-xs text-gray-400">dec 25th</div>
+                            </div>
+                            
+                            <div class="font-body text-xl text-gray-800 leading-relaxed lowercase space-y-6">
+                                <p class="font-bold text-2xl mb-6">to my beautiful love, aaradhya,</p>
+                                
+                                <p>first, a warning: prepare for the finest dad jokes known to mankind.</p>
+                                
+                                <p class="pl-4 border-l-2 border-red-200 italic text-gray-600">Why did the Christmas tree go to the barber? It needed a trim. <br> 
+                                What do you call a snowman with a six-pack? An abdominal snowman.</p>
+                                
+                                <p>okay, now that i've (hopefully) made you smile, i want to tell you something real.</p>
+                                
+                                <p>this calendar is just 10 small keys, but you hold the master key to everything i am. i love your individuality—the way you see the world in colors no one else can imagine. i love how hardworking you are, how you pour your soul into everything you touch, even when the world feels heavy.</p>
+                                
+                                <p>i appreciate every text, every call, every moment of "us" across the distance. you inspire me to be a better man just by existing. biology says we are made of cells, but i am certain you are made of stardust and resilience.</p>
+                                
+                                <p>i am counting down not just to christmas, but to the day i can hold you and not have to let go. i can't wait to be with you.</p>
+                                
+                                <p>merry christmas, my love. you are my favorite gift.</p>
+                                <br>
+                                <p class="text-right font-bold text-2xl mt-8 signature transform -rotate-2">- with all my love, niv.</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+        ];
+
+        // --- INIT ---
+        function init() {
+            console.log('Initializing Calendar...');
+            try {
+                renderGrid();
+                startCountdown();
+                generateSnow();
+                checkNightMode();
+                setInterval(checkNightMode, 60000);
+            } catch (e) {
+                console.error('Error during init:', e);
+                alert('Oops, something went wrong loading the calendar. ' + e.message);
+            }
+        }
+
+        // --- RENDER ---
+        function renderGrid() {
+            const grid = document.getElementById('grid');
+            if (!grid) {
+                console.error('Grid element not found');
+                return;
+            }
+            grid.innerHTML = '';
+            
+            const now = new Date();
+            const daysUnlocked = CONFIG.isDev ? 10 : Math.max(0, Math.ceil((now - CONFIG.startDate) / (1000 * 60 * 60 * 24)));
+            
+            DAYS.forEach(day => {
+                const isLocked = day.id > daysUnlocked;
+                const isOpened = openedDoors.includes(day.id);
+                
+                const card = document.createElement('div');
+                const heightClass = day.id % 2 === 0 ? 'aspect-[3/4]' : 'aspect-[4/5]'; 
+                
+                card.className = `${heightClass} relative group perspective-1000 cursor-pointer`;
+                
+                let innerHTML = `
+                    <div class="door-card w-full h-full rounded-2xl flex flex-col items-center justify-center border-4 border-white/20" onclick="handleDoorClick(${day.id}, ${isLocked}, this)">
+                        <!-- Number -->
+                        <div class="door-number w-12 h-12 md:w-16 md:h-16 flex items-center justify-center text-3xl md:text-4xl z-10 transform transition group-hover:scale-110">
+                            ${day.id}
+                        </div>
+                        
+                        ${isOpened ? '<div class="ribbon"></div>' : ''}
+                        
+                        ${isLocked ? `
+                            <div class="absolute bottom-6 opacity-60">
+                                <span class="text-2xl padlock inline-block">🔒</span>
+                            </div>
+                        ` : `
+                             <div class="absolute bottom-6 opacity-0 group-hover:opacity-100 transition-opacity text-wood-800 dark:text-wood-200 font-hand text-xl lowercase">
+                                open me
+                            </div>
+                        `}
+
+                        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/wood-pattern.png')] pointer-events-none rounded-xl"></div>
+                    </div>
+                `;
+                
+                card.innerHTML = innerHTML;
+                grid.appendChild(card);
+            });
+        }
+
+        window.handleDoorClick = (id, isLocked, el) => {
+            if (isLocked) {
+                el.classList.add('animate-jiggle');
+                setTimeout(() => el.classList.remove('animate-jiggle'), 300);
+                const toast = document.getElementById('toast');
+                toast.classList.remove('opacity-0', 'scale-90');
+                setTimeout(() => toast.classList.add('opacity-0', 'scale-90'), 2500);
+                return;
+            }
+
+            const audio = document.getElementById('open-sound');
+            if(audio) { audio.volume = 0.2; audio.play().catch(e => {}); }
+
+            confetti({
+                particleCount: 30, scalar: 2, shapes: ['circle'], 
+                colors: ['#f43f5e', '#fbbf24'], spread: 70, origin: { y: 0.6 }
+            });
+
+            if(!openedDoors.includes(id)) {
+                openedDoors.push(id);
+                try {
+                    localStorage.setItem('openedDoors', JSON.stringify(openedDoors));
+                } catch(e) {}
+                renderGrid(); // Re-render to show ribbon
+            }
+
+            const dayData = DAYS.find(d => d.id === id);
+            if(dayData) {
+                setTimeout(() => {
+                    const overlay = document.getElementById('modal-overlay');
+                    const content = document.getElementById('modal-content');
+                    const card = document.getElementById('modal-card');
+                    
+                    content.innerHTML = dayData.content;
+                    overlay.classList.remove('hidden');
+                    void overlay.offsetWidth;
+                    overlay.classList.remove('opacity-0');
+                    card.classList.remove('translate-y-10');
+                    
+                    if(dayData.onOpen) dayData.onOpen();
+                }, 300);
+            }
+        }
+
+        // --- FINALE LOGIC ---
+        window.playFinale = () => {
+            document.getElementById('finale-start').classList.add('hidden');
+            document.getElementById('finale-content').classList.remove('hidden');
+            
+            // Inject YouTube Iframe now that user interacted
+            // IMPORTANT: Using a visible (but opaque) iframe ensures autoplay works better than display:none
+            const container = document.getElementById('player-container');
+            container.innerHTML = `
+                <iframe width="100%" height="100%" 
+                    src="https://www.youtube.com/embed/aAkMkVFwAoo?autoplay=1&loop=1&playlist=aAkMkVFwAoo&enablejsapi=1" 
+                    frameborder="0" allow="autoplay; encrypted-media">
+                </iframe>
+            `;
+            
+            confettiEffect();
+        };
+
+        window.closeModal = () => {
+            const overlay = document.getElementById('modal-overlay');
+            const card = document.getElementById('modal-card');
+            
+            // Stop Music if playing from finale
+            const container = document.getElementById('player-container');
+            container.innerHTML = '';
+
+            overlay.classList.add('opacity-0');
+            card.classList.add('translate-y-10');
+            setTimeout(() => overlay.classList.add('hidden'), 300);
+        }
+
+        function confettiEffect() {
+            const duration = 3000;
+            const end = Date.now() + duration;
+            (function frame() {
+                confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#e11d48', '#ffffff'] });
+                confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#e11d48', '#ffffff'] });
+                if (Date.now() < end) requestAnimationFrame(frame);
+            }());
+        }
+
+        function checkNightMode() {
+            const h = new Date().getHours();
+            if (h >= 21 || h < 6) document.body.classList.add('dark');
+            else document.body.classList.remove('dark');
+        }
+
+        function startCountdown() {
+            setInterval(() => {
+                const now = new Date();
+                const target = new Date("2024-12-25T00:00:00+05:30"); // Target IST
+                const diff = target - now;
+                const el = document.getElementById('countdown');
+                if (diff <= 0) { if(el) el.innerText = "00:00:00"; return; }
+                const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((diff % (1000 * 60)) / 1000);
+                if(el) el.innerHTML = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+            }, 1000);
+        }
+
+        function generateSnow() {
+            const container = document.getElementById('snow-container');
+            if (!container) return;
+            for(let i=0; i<50; i++) {
+                const el = document.createElement('div');
+                el.className = 'snowflake font-hand';
+                el.innerText = Math.random() > 0.5 ? '❄' : '•';
+                el.style.left = Math.random() * 100 + '%';
+                el.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                el.style.animationDelay = (Math.random() * 5) + 's';
+                el.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                el.style.opacity = Math.random() * 0.7;
+                container.appendChild(el);
+            }
+        }
+        
+        window.resetCalendar = () => {
+            if(confirm("reset all?")) { 
+                try { localStorage.clear(); } catch(e){} 
+                location.reload(); 
+            }
+        };
+        window.toggleDevMode = () => { CONFIG.isDev = !CONFIG.isDev; renderGrid(); };
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    </script>
+</body>
+</html>
